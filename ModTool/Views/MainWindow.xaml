@@ -1,0 +1,48 @@
+﻿<Window x:Class="ModTool.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:vm="clr-namespace:ModTool.ViewModels"
+        mc:Ignorable="d"
+        Title="Modbus tool" WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Connection">
+                    <MenuItem Header="Master connect" Command="{Binding MasterConnectCommand}"/>
+                    <MenuItem Header="Client TCP/IP connect" Command="{Binding TcpClientConnectCommand}"/>
+                    <MenuItem Header="Client UDP/IP connect" Command="{Binding UdpClientConnectCommand}"/>
+                    <Separator/>
+                    <MenuItem Header="Slave connect" Command="{Binding SlaveConnectCommand}"/>
+                    <MenuItem Header="Server TCP/IP connect" Command="{Binding TcpServerConnectCommand}"/>
+                    <MenuItem Header="Server UDP/IP connect" Command="{Binding UdpServerConnectCommand}"/>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Undo" Command="Undo"/>
+                    <MenuItem Header="Redo" Command="Redo"/>
+                    <Separator/>
+                    <MenuItem Header="Cut" Command="Cut"/>
+                    <MenuItem Header="Copy" Command="Copy"/>
+                    <MenuItem Header="Paste" Command="Paste"/>
+                </MenuItem>
+            </Menu>
+            <StatusBar DockPanel.Dock="Bottom"/>
+            <xcad:DockingManager>
+                <xcad:DockingManager.Theme>
+                    <xcad:AeroTheme/>
+                    <!--<xcad:MetroTheme/>-->
+                </xcad:DockingManager.Theme>
+                <xcad:LayoutRoot>
+                    <xcad:LayoutPanel>
+                        <xcad:LayoutDocumentPane x:Name="MainDocumentPane"/>
+                    </xcad:LayoutPanel>
+                </xcad:LayoutRoot>
+            </xcad:DockingManager>
+        </DockPanel>
+    </Grid>
+</Window>
